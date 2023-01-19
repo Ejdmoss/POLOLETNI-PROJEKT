@@ -1,0 +1,50 @@
+.napis {
+    background-color: #000000;
+    text-align: center;
+    font-weight: 900;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    color: #444444;
+    padding: 15px 0px 15px;
+}
+
+.main-background {
+    background-image: url(img/start.png);
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+}
+
+.nadpis1 {
+    font-size: 65px;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #b7187c;
+}
+
+.button {
+    font-size: 18px;
+    text-decoration: none;
+    color: #b7187c;
+    padding: 10px 20px;
+    border: #b7187c solid 1px;
+    border-radius: 10px;
+    margin-top: 20px;
+    text-transform: none;
+}
+
+.button:hover {
+    background: #666464;
+    color: #b7187c;
+}
+
+.a {
+    opacity: 100%;
+    margin-top: 13px;
+    color: white;
+}
