@@ -69,6 +69,9 @@ let composite2 = Matter.Composites.pyramid(1650, 485, 10, 8, 0, 0, function (x, 
     })
 })
 
+
+
+
 /* pozice hlavní koule */
 let ball_pos = {
     x: 200,
@@ -106,11 +109,26 @@ let sling = Matter.Constraint.create({
     stiffness: 0.05
 })
 
-/* vygeneruje mi čáru za objektem kterým směrem mířím */
+/* vygeneruje mi čáru za objektem kterým směrem mířím + vytvářím ochranu proti podvádění na schození pyramidy*/
+
 let mouseConstraint = Matter.MouseConstraint.create(engine, {
-    mouse: Matter.Mouse.create(rederer.canvas)
-})
-rederer.mouse = mouseConstraint
+    mouse: Matter.Mouse.create(rederer.canvas),
+    constraint: {
+        stiffness: 0.5,
+        render: {
+            visible: false
+        }
+    }
+});
+let pyramidBodies = Matter.Composite.allBodies(composite);
+pyramidBodies = pyramidBodies.concat(Matter.Composite.allBodies(composite2));
+
+Matter.Events.on(mouseConstraint, "mousedown", function(e) {
+    let body = e.source.body;
+    if (pyramidBodies.indexOf(body) !== -1) {
+        body.isStatic = true;
+    }
+});
 
 /*vygenerování všech vytvořených objektů */
 Matter.World.add(engine.world, [ground, ground2, ground3, ground4, composite, composite2, ball, sling, mouseConstraint])
